@@ -1,6 +1,7 @@
 services:
     app.doctrine_manager:
         class: AppBundle\Manager\AbstractDoctrineManager
+        abstract: true
         arguments:
             - "@=service('doctrine').getManager()"
 
