@@ -1,0 +1,15 @@
+{% trans_default_domain('app') %}
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.status) }}
+    {{ form_row(form.description) }}
+
+    <div class="form-action">
+        {{ form_rest(form) }}
+        <button type="submit" class="btn btn-primary">{{ 'task_form.submit' | trans }}</button>
+    </div>
+{{ form_end(form) }}

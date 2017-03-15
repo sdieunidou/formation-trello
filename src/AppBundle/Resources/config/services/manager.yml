@@ -1,0 +1,13 @@
+services:
+    app.doctrine_manager:
+        class: AppBundle\Manager\AbstractDoctrineManager
+        arguments:
+            - "@=service('doctrine').getManager()"
+
+    app.category_manager:
+        class: AppBundle\Manager\CategoryManager
+        parent: app.doctrine_manager
+
+    app.task_manager:
+        class: AppBundle\Manager\TaskManager
+        parent: app.doctrine_manager

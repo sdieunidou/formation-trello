@@ -1,0 +1,22 @@
+services:
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Management", label: "Catégories" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Category
+            - ~
+        calls:
+            - [ setTranslationDomain, [admin]]
+
+    app.admin.task:
+        class: AppBundle\Admin\TaskAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Management", label: "Tâches" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Task
+            - ~
+        calls:
+            - [ setTranslationDomain, [admin]]

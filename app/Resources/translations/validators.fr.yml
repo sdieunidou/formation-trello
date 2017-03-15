@@ -1,0 +1,7 @@
+task_form:
+    name:
+        not_blank: Veuillez nommer la tâche
+    status:
+        not_blank: Veuillez spécifier un statut
+    category:
+        not_null: Veuillez spécifier une catégorie

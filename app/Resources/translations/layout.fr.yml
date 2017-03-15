@@ -1,0 +1,7 @@
+app:
+    metas:
+        title: Mon Suivi d'activite
+
+    navigation:
+        categories_list: Suivi des taches
+        task_create: Ajouter une tache

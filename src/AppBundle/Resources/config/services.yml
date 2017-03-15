@@ -1,0 +1,4 @@
+imports:
+    - { resource: 'services/manager.yml'}
+    - { resource: 'services/normalizer.yml'}
+    - { resource: 'services/admin.yml'}

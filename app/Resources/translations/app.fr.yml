@@ -1,0 +1,20 @@
+category_list:
+    empty: Veuillez importer les catégories
+
+task_create:
+    title: Création d'une tâche
+    success: La tâche a été ajouté
+
+task_edit:
+    title: Edition de la tâche "%name%"
+    success: La tâche "%name%" a été édité
+
+task_form:
+    name:        Nom de la tâche
+    description: Description
+    category:    Catégorie
+    submit:      Envoyer
+    status:
+        label:  Statut
+        open:   Tâche ouverte
+        closed: Tâche fermée

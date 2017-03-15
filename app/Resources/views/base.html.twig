@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    {% trans_default_domain('layout') %}
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{{ 'app.metas.title'|trans }}{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link href="{{ asset('bundles/app/css/app.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% include ':app:_nav.html.twig' %}
+
+        <div class="container-fluid">
+            <div class="row">
+                {% if app.session.started and app.session.flashBag.peekAll is not empty %}
+                    <div class="col-md-12">
+                        <div class="messages">
+                            {% for type, messages in app.session.flashBag.all %}
+                                {% set type = type == 'error' ? 'danger' : type %}
+
+                                {% for message in messages %}
+                                    {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+                                    <div class="alert alert-dismissible alert-{{ type }} text-center" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <strong>{{ message|trans }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% block content '' %}
+            </div>
+        </div>
+
+        {% block javascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+            {% if app.environment == 'dev' %}
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('form').each(function() {
+                            $(this).attr('novalidate', 'novalidate');
+                        });
+                    });
+                </script>
+            {% endif %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain('app') %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-md-3">
+                    <h2>{{ category.name|upper }} <span class="badge">{{ category.tasks|length }}</span></h2>
+
+                    {% for task in category.tasks %}
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                <a href="{{ path('app_task_edit', {
+                                    'id': task.id
+                                }) }}" class="pull-right">
+                                    <span class="glyphicon glyphicon-edit text-info"></span>
+                                </a>
+
+                                <h3 class="panel-title" {% if task.hasDescription %}data-toggle="collapse" data-target="#task-{{ task.id }}"{% endif %}>
+                                    {% if task.hasDescription %}
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    {% endif %}
+                                    {{ task.name | capitalize }}
+                                </h3>
+                            </div>
+
+                            {% if task.hasDescription %}
+                                <div class="panel-body collapse" id="task-{{ task.id }}">
+                                    <p>
+                                        {{ task.description }}
+                                    </p>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    {{ 'category_list.empty'|trans }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
