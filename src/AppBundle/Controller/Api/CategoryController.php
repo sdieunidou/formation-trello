@@ -71,7 +71,7 @@ class CategoryController extends FOSRestController
         $form = $this->get('form.factory')->createNamed('', CategoryType::class, $this->getCategoryManager()->create(), [
             'csrf_protection' => false,
         ]);
-        $form->handleRequest($request);
+        $form->submit($request->request->all());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getCategoryManager()->save($form->getData());

@@ -70,7 +70,7 @@ class TaskController extends FOSRestController
         $form = $this->get('form.factory')->createNamed('', TaskType::class, $this->getTaskManager()->create(), [
             'csrf_protection' => false,
         ]);
-        $form->handleRequest($request);
+        $form->submit($request->request->all());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getTaskManager()->save($form->getData());
