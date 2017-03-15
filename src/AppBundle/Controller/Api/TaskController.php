@@ -78,7 +78,7 @@ class TaskController extends FOSRestController
             return $form->getData();
         }
 
-        return new View($form->getErrors(), Response::HTTP_BAD_REQUEST);
+        return new View($form, Response::HTTP_BAD_REQUEST);
     }
 
     /**
